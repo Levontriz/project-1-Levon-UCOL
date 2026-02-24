@@ -38,6 +38,11 @@ Right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player Stuff"
+2d_physics/layer_2="Enemies"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -46,3 +51,4 @@ Right={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true

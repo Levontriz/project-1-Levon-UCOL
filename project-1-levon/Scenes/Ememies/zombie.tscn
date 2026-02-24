@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c2i2l4p24p510"]
+
+[ext_resource type="Script" uid="uid://8eti8rk7g2k8" path="res://Scripts/Enemies/zombie.gd" id="1_a5gdo"]
+[ext_resource type="Texture2D" uid="uid://b38mnwt6t8s7j" path="res://Assets/Enemies/zombie.png" id="2_rs044"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rs044"]
+radius = 36.0
+height = 92.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kstdb"]
+atlas = ExtResource("2_rs044")
+region = Rect2(0, 0, 19, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brwfc"]
+atlas = ExtResource("2_rs044")
+region = Rect2(19, 0, 19, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfm4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kstdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brwfc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Zombie" type="CharacterBody2D" unique_id=1045395085]
+collision_mask = 2
+script = ExtResource("1_a5gdo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253106267]
+shape = SubResource("CapsuleShape2D_rs044")
+
+[node name="ZombieSprite" type="AnimatedSprite2D" parent="." unique_id=472196860]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_xfm4f")
