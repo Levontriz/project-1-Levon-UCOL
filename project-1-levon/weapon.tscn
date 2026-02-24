@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dxdr0yd7863t8"]
+
+[ext_resource type="Script" uid="uid://dj1eul8rbdeqk" path="res://weapon.gd" id="1_8xwfw"]
+[ext_resource type="Texture2D" uid="uid://cpjr1cugvx0us" path="res://Assets/Weapons/gun.png" id="1_swcir"]
+[ext_resource type="Texture2D" uid="uid://c5tb25mcbek82" path="res://Assets/Weapons/muzzle_flash.png" id="2_o2wld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xwfw"]
+atlas = ExtResource("2_o2wld")
+region = Rect2(0, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fy1u"]
+atlas = ExtResource("2_o2wld")
+region = Rect2(32, 0, 32, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swcir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xwfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fy1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Weapon" type="Node2D" unique_id=1321397462 node_paths=PackedStringArray("weapon")]
+script = ExtResource("1_8xwfw")
+weapon = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=589973769]
+position = Vector2(39, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("1_swcir")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=644382818]
+position = Vector2(91, 13)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_swcir")
