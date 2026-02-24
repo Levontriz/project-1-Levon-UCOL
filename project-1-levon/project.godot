@@ -13,7 +13,7 @@ config_version=5
 config/name="Project 1 Levon"
 run/main_scene="uid://cyw820ohprg7k"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/misc/icon.svg"
 
 [input]
 
