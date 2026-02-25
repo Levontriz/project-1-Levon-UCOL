@@ -34,6 +34,7 @@ unique_name_in_owner = true
 position = Vector2(-12, 70)
 
 [node name="Area2D" type="Area2D" parent="Sword_Pivot" unique_id=1925290161]
+unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 4
 
