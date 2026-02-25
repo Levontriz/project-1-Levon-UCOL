@@ -1,0 +1,2 @@
+extends DefaultPrimaryWeapon
+class_name ar

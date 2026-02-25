@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b4xkl8nk7yc2h"]
+
+[ext_resource type="Script" uid="uid://dfhbqnorjgtxk" path="res://Scripts/Weapons/sword.gd" id="1_1jmgt"]
+[ext_resource type="Texture2D" uid="uid://dsgfnqgpe8g4q" path="res://Assets/Weapons/sword.png" id="2_v4uo3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4uo3"]
+height = 63.141846
+
+[node name="Sword" type="Node2D" unique_id=528787495]
+script = ExtResource("1_1jmgt")
+weapon_rotation_weight = null
+
+[node name="Sword_Pivot" type="Node2D" parent="." unique_id=36758520]
+position = Vector2(25, 0)
+
+[node name="Sword" type="Sprite2D" parent="Sword_Pivot" unique_id=353862031]
+position = Vector2(-6, 33)
+rotation = 2.5307274
+scale = Vector2(4, 4)
+texture = ExtResource("2_v4uo3")
+
+[node name="Area2D" type="Area2D" parent="Sword_Pivot" unique_id=1925290161]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Pivot/Area2D" unique_id=2033624676]
+position = Vector2(-7.999999, 45.000004)
+rotation = 0.17453292
+shape = SubResource("CapsuleShape2D_v4uo3")

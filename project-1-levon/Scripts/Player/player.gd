@@ -1,12 +1,12 @@
 extends CharacterBody2D
-
+class_name Player
 
 @export var SPEED = 300.0
 @export var ACCELERATION = 3000.0
-@export var DECCELERATION = 1000.0
+@export var DECCELERATION = 1500.0
 
-@onready var player_sprite = $PlayerSprite
-@onready var weapon = $Weapon
+@onready var player_sprite : AnimatedSprite2D = $PlayerSprite
+@onready var weapon_manager : WeaponManager = $WeaponManager
 
 func _physics_process(delta: float) -> void:
 	var movement_vector = Input.get_vector("Left", "Right", "Up", "Down").normalized()
@@ -18,8 +18,5 @@ func _physics_process(delta: float) -> void:
 		player_sprite.play()
 	else:
 		player_sprite.pause()
-	var direction = get_global_mouse_position() - weapon.global_position
-	var target_angle = direction.angle()
-	weapon.rotation = lerp_angle(weapon.rotation, target_angle, 15.0 * delta)
 
 	move_and_slide()

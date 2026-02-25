@@ -30,7 +30,8 @@ animations = [{
 }]
 
 [node name="Zombie" type="CharacterBody2D" unique_id=1045395085]
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_a5gdo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253106267]

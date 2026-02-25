@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cwh4f6sljy54c" path="res://Scripts/Player/player.gd" id="1_onrkg"]
 [ext_resource type="Shader" uid="uid://bqwn7nrj45bi5" path="res://Scenes/Player/player.tres" id="2_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://cow6o6qinx52w" path="res://Assets/Player/player_0001.png" id="3_hqtel"]
-[ext_resource type="PackedScene" uid="uid://dxdr0yd7863t8" path="res://Scenes/Weapons/weapon.tscn" id="4_hqtel"]
 [ext_resource type="Texture2D" uid="uid://ckk5qgy7uyb5e" path="res://Assets/Player/player_0002.png" id="4_sweqy"]
 [ext_resource type="Script" uid="uid://55vl3537jqtr" path="res://Scripts/Weapons/weapon_manager.gd" id="5_htcer"]
 
@@ -50,11 +49,10 @@ material = SubResource("ShaderMaterial_0u5uq")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 
-[node name="Weapon" parent="." unique_id=1802351867 instance=ExtResource("4_hqtel")]
-
-[node name="WeaponManager" type="Node" parent="." unique_id=1759530655]
+[node name="WeaponManager" type="Node2D" parent="." unique_id=91491162]
+unique_name_in_owner = true
 script = ExtResource("5_htcer")
 
-[node name="PrimaryWeapon" type="Node" parent="WeaponManager" unique_id=197798273]
+[node name="PrimaryWeapon" type="Node2D" parent="WeaponManager" unique_id=316133297]
 
 [node name="SubWeapons" type="Node" parent="WeaponManager" unique_id=937619305]
