@@ -2,19 +2,16 @@ extends Node2D
 
 @export var PlayerScene : PackedScene
 @export var TestEnemy : PackedScene
-var weapon : PackedScene = preload("res://Scenes/Weapons/sword.tscn")
+
+var main_menu : PackedScene = preload("res://Scenes/Maps/main_menu.tscn")
+
 
 """
 Instances the player and places them in the world
 """
-func _ready() -> void:
-	print()
-	var player_instance : Player = PlayerScene.instantiate()
-	player_instance.z_index = 1
-	add_child(player_instance)
-	player_instance.weapon_manager.weapon = weapon
+
+#func _ready() -> void:
+	#var main_menu_instance = main_menu.instantiate()
+	#add_child(main_menu_instance)
+
 	
-	var enemy_instance : CharacterBody2D = TestEnemy.instantiate()
-	enemy_instance.z_index = 0
-	add_child(enemy_instance)
-	enemy_instance.player = player_instance

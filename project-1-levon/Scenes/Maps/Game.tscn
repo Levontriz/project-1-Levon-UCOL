@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2i2l4p24p510" path="res://Scenes/Ememies/zombie.tscn" id="3_fgv2n"]
 [ext_resource type="Texture2D" uid="uid://bbcgex6djmly" path="res://Assets/misc/icon.svg" id="3_o65xm"]
 [ext_resource type="Texture2D" uid="uid://cow6o6qinx52w" path="res://Assets/Player/player_0001.png" id="6_fgv2n"]
+[ext_resource type="Script" uid="uid://ci8h6hmjpnix7" path="res://Scripts/spawner.gd" id="7_01cpk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb48q"]
 texture = ExtResource("1_30wa2")
@@ -28,18 +29,27 @@ glow_map = ExtResource("6_fgv2n")
 
 [sub_resource type="Compositor" id="Compositor_01cpk"]
 
+[sub_resource type="Curve2D" id="Curve2D_01cpk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -646, -370, 0, 0, 0, 0, 618, -378, 0, 0, 0, 0, 632, 376, 0, 0, 0, 0, -642, 386, 0, 0, 0, 0, -644, -372)
+}
+point_count = 5
+
 [node name="Game" type="Node2D" unique_id=310334868]
 script = ExtResource("1_p7m0t")
 PlayerScene = ExtResource("2_p7m0t")
 TestEnemy = ExtResource("3_fgv2n")
 
 [node name="FloorLayer" type="TileMapLayer" parent="." unique_id=802121641]
+z_index = -2
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD7/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAP//AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP3/AAAAAAAAAAADAP3/AAAAAAAAAAACAP3/AAAAAAAAAAABAP3/AAAAAAAAAAAAAP3/AAAAAAAAAAD///3/AAAAAAAAAAD+//3/AAAAAAAAAAD9//3/AAAAAAAAAAD8//3/AAAAAAAAAAD7//3/AAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD9//7/AAAAAAAAAAD+////AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+//7/AAAAAAAAAAD//wEAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAP//AAAAAAAAAAACAP7/AAAAAAAAAAABAP7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAADAP//AAAAAAAAAAADAP7/AAAAAAAAAAABAP//AAAAAAAAAAD5/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD5/wQAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD5////AAAAAAAAAAD5//7/AAAAAAAAAAD5//3/AAAAAAAAAAD5//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//z/AAAAAAAAAAD7//z/AAAAAAAAAAD8//z/AAAAAAAAAAD6////AAAAAAAAAAD6//7/AAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAACAAQAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAAAPz/AAAAAAAAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD9//z/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAP//AAAAAAAAAAAHAP7/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAGAP7/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_t88pq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2050376837]
 position = Vector2(267, 126)
+collision_layer = 32
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1880794424]
 texture = ExtResource("3_o65xm")
@@ -50,3 +60,28 @@ shape = SubResource("RectangleShape2D_u44n3")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=354874548]
 environment = SubResource("Environment_o65xm")
 compositor = SubResource("Compositor_01cpk")
+
+[node name="Entities" type="Node2D" parent="." unique_id=2126298575]
+y_sort_enabled = true
+
+[node name="Player" parent="Entities" unique_id=514911939 instance=ExtResource("2_p7m0t")]
+unique_name_in_owner = true
+
+[node name="SpawnPath" type="Path2D" parent="Entities/Player" unique_id=675687660]
+curve = SubResource("Curve2D_01cpk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Player/SpawnPath" unique_id=511317350]
+position = Vector2(-646, -370)
+rotation = -0.0063290293
+
+[node name="SPAWNER" type="Node" parent="." unique_id=64422225 node_paths=PackedStringArray("object_container", "path_follow")]
+script = ExtResource("7_01cpk")
+object_container = NodePath("../Entities")
+scene_to_spawn = ExtResource("3_fgv2n")
+path_follow = NodePath("../Entities/Player/SpawnPath/PathFollow2D")
+
+[node name="Timer" type="Timer" parent="SPAWNER" unique_id=330182331]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="SPAWNER/Timer" to="SPAWNER" method="_on_timer_timeout"]

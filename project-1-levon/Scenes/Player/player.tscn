@@ -4,7 +4,12 @@
 [ext_resource type="Shader" uid="uid://bqwn7nrj45bi5" path="res://Scenes/Player/player.tres" id="2_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://cow6o6qinx52w" path="res://Assets/Player/player_0001.png" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://ckk5qgy7uyb5e" path="res://Assets/Player/player_0002.png" id="4_sweqy"]
-[ext_resource type="Script" uid="uid://55vl3537jqtr" path="res://Scripts/Weapons/weapon_manager.gd" id="5_htcer"]
+[ext_resource type="PackedScene" uid="uid://c33vof404i7h7" path="res://Scenes/Player/hitbox.tscn" id="5_htcer"]
+[ext_resource type="Script" uid="uid://7o74kbajrae5" path="res://Scenes/Player/aura.gd" id="6_dd0ac"]
+[ext_resource type="Script" uid="uid://canvmmph4l5hu" path="res://Scenes/Player/weapon_gun.gd" id="7_0u5uq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htcer"]
+radius = 94.13288
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 36.0
@@ -31,8 +36,20 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=514911939]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlvik"]
+radius = 552.56586
+
+[node name="Player" type="CharacterBody2D" unique_id=514911939 groups=["player"]]
+collision_mask = 32
+motion_mode = 1
 script = ExtResource("1_onrkg")
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1402264461]
+collision_layer = 256
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=2020731561]
+shape = SubResource("CircleShape2D_htcer")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1866576562]
 
@@ -40,6 +57,8 @@ script = ExtResource("1_onrkg")
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=615124848]
+collision_layer = 4
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2046313977]
 shape = SubResource("CapsuleShape2D_i3pqv")
@@ -49,10 +68,42 @@ material = SubResource("ShaderMaterial_0u5uq")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 
-[node name="WeaponManager" type="Node2D" parent="." unique_id=91491162]
-unique_name_in_owner = true
-script = ExtResource("5_htcer")
+[node name="DamageTimer" type="Timer" parent="." unique_id=1511271211]
+wait_time = 0.05
+autostart = true
 
-[node name="PrimaryWeapon" type="Node2D" parent="WeaponManager" unique_id=316133297]
+[node name="Weapons" type="Node2D" parent="." unique_id=304809752]
 
-[node name="SubWeapons" type="Node" parent="WeaponManager" unique_id=937619305]
+[node name="Aura" type="Node2D" parent="Weapons" unique_id=1066184403]
+script = ExtResource("6_dd0ac")
+
+[node name="Hitbox" parent="Weapons/Aura" unique_id=788644701 instance=ExtResource("5_htcer")]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/Aura/Hitbox" unique_id=1567240120]
+shape = SubResource("CircleShape2D_htcer")
+
+[node name="DamageTimer" type="Timer" parent="Weapons/Aura" unique_id=1527659141]
+wait_time = 0.05
+autostart = true
+
+[node name="Gun" type="Node2D" parent="Weapons" unique_id=1555035913]
+script = ExtResource("7_0u5uq")
+
+[node name="DetectionArea" type="Area2D" parent="Weapons/Gun" unique_id=217614709]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/Gun/DetectionArea" unique_id=1462532448]
+shape = SubResource("CircleShape2D_jlvik")
+
+[node name="FireRate" type="Timer" parent="Weapons/Gun" unique_id=1045824395]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Weapons/Aura/DamageTimer" to="Weapons/Aura" method="_on_damage_timer_timeout"]
+[connection signal="body_entered" from="Weapons/Gun/DetectionArea" to="Weapons/Gun" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Weapons/Gun/DetectionArea" to="Weapons/Gun" method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="Weapons/Gun/FireRate" to="Weapons/Gun" method="_on_fire_rate_timeout"]

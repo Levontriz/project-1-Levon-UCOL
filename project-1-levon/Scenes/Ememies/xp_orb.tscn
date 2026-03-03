@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dkljqwottevnv"]
+
+[ext_resource type="Texture2D" uid="uid://0dismjhq6kbj" path="res://Assets/Enemies/xp_orb.png" id="1_1jn0t"]
+[ext_resource type="Script" uid="uid://d1e3bq3bgbmxm" path="res://Scripts/Enemies/xp_orb.gd" id="1_kavak"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kavak"]
+radius = 13.0
+height = 26.0
+
+[node name="XpOrb" type="Node2D" unique_id=1854871287]
+z_index = -1
+script = ExtResource("1_kavak")
+
+[node name="Pickup" type="Area2D" parent="." unique_id=1906238004]
+script = ExtResource("1_kavak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup" unique_id=535433342]
+shape = SubResource("CapsuleShape2D_kavak")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1790679716]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_1jn0t")
