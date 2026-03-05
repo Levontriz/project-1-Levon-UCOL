@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b38pl52ahcvq7"]
+
+[ext_resource type="Script" uid="uid://yu5uxuek0jty" path="res://Scripts/Weapons/ar.gd" id="1_q86te"]
+[ext_resource type="Texture2D" uid="uid://cpjr1cugvx0us" path="res://Assets/Weapons/gun.png" id="2_0426v"]
+[ext_resource type="Texture2D" uid="uid://c5tb25mcbek82" path="res://Assets/Weapons/muzzle_flash.png" id="3_bytyb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q86te"]
+atlas = ExtResource("3_bytyb")
+region = Rect2(0, 0, 32, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0426v"]
+atlas = ExtResource("3_bytyb")
+region = Rect2(32, 0, 32, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ejbcs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q86te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0426v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Ar" type="Node2D" unique_id=1132533927 node_paths=PackedStringArray("weapon_texture")]
+script = ExtResource("1_q86te")
+weapon_texture = NodePath("Origin")
+
+[node name="Origin" type="Sprite2D" parent="." unique_id=548298664]
+position = Vector2(40, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0426v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=107606757]
+position = Vector2(92, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ejbcs")

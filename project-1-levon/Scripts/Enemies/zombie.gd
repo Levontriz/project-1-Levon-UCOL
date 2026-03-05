@@ -1,7 +1,6 @@
 extends Enemy
 
 @onready var walkAnimation = $ZombieSprite
-var player: CharacterBody2D
 
 const SEPARATION_RADIUS = 80.0**2
 const SEPARATION_STRENGTH = 5.0

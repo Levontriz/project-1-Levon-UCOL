@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cow6o6qinx52w" path="res://Assets/Player/player_0001.png" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://ckk5qgy7uyb5e" path="res://Assets/Player/player_0002.png" id="4_sweqy"]
 [ext_resource type="PackedScene" uid="uid://c33vof404i7h7" path="res://Scenes/Player/hitbox.tscn" id="5_htcer"]
-[ext_resource type="Script" uid="uid://7o74kbajrae5" path="res://Scenes/Player/aura.gd" id="6_dd0ac"]
-[ext_resource type="Script" uid="uid://canvmmph4l5hu" path="res://Scenes/Player/weapon_gun.gd" id="7_0u5uq"]
+[ext_resource type="Script" uid="uid://7o74kbajrae5" path="res://Scripts/Weapons/aura.gd" id="6_dd0ac"]
+[ext_resource type="Script" uid="uid://canvmmph4l5hu" path="res://Scripts/Weapons/weapon_gun.gd" id="7_0u5uq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htcer"]
 radius = 94.13288
@@ -102,6 +102,7 @@ shape = SubResource("CircleShape2D_jlvik")
 wait_time = 0.1
 autostart = true
 
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Weapons/Aura/DamageTimer" to="Weapons/Aura" method="_on_damage_timer_timeout"]
 [connection signal="body_entered" from="Weapons/Gun/DetectionArea" to="Weapons/Gun" method="_on_detection_area_body_entered"]

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://8eti8rk7g2k8" path="res://Scripts/Enemies/zombie.gd" id="1_a5gdo"]
 [ext_resource type="PackedScene" uid="uid://dkljqwottevnv" path="res://Scenes/Ememies/xp_orb.tscn" id="2_kstdb"]
 [ext_resource type="Texture2D" uid="uid://b38mnwt6t8s7j" path="res://Assets/Enemies/zombie.png" id="2_rs044"]
-[ext_resource type="Script" uid="uid://dgtod87iuwvjc" path="res://Scenes/Ememies/hurt.gd" id="4_brwfc"]
-[ext_resource type="Script" uid="uid://dldy5lj1cmcw5" path="res://Scenes/Ememies/hurt_box.gd" id="5_xfm4f"]
-[ext_resource type="Script" uid="uid://cbkfvr2qhoubd" path="res://Scenes/Player/hitbox.gd" id="6_kegfg"]
+[ext_resource type="Script" uid="uid://dgtod87iuwvjc" path="res://Scripts/Player/hurt.gd" id="4_brwfc"]
+[ext_resource type="Script" uid="uid://dldy5lj1cmcw5" path="res://Scripts/Player/hurt_box.gd" id="5_xfm4f"]
+[ext_resource type="Script" uid="uid://cbkfvr2qhoubd" path="res://Scripts/Player/hitbox.gd" id="6_kegfg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rs044"]
 radius = 36.0
@@ -38,6 +38,8 @@ collision_layer = 2
 collision_mask = 32
 motion_mode = 1
 script = ExtResource("1_a5gdo")
+max_health = null
+movement_speed = null
 xp_orb = ExtResource("2_kstdb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253106267]

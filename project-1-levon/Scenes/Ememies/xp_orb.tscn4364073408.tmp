@@ -13,6 +13,8 @@ height = 26.0
 shader = ExtResource("3_sg7q1")
 shader_parameter/levels = 4.0
 
+[sub_resource type="GDScript" id="GDScript_dolh3"]
+
 [node name="XpOrb" type="Node2D" unique_id=1854871287]
 z_index = -1
 script = ExtResource("1_kavak")
@@ -29,6 +31,7 @@ shape = SubResource("CapsuleShape2D_kavak")
 material = SubResource("ShaderMaterial_ib6fr")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_1jn0t")
+script = SubResource("GDScript_dolh3")
 
 [node name="Timer" type="Timer" parent="." unique_id=1722476142]
 wait_time = 2.0

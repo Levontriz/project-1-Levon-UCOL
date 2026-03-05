@@ -6,6 +6,8 @@ class_name Enemy
 @export var xp_orb: PackedScene
 @export var game: Node2D
 
+var player: CharacterBody2D
+
 var current_health: int
 var enemy_velocity: Vector2 = Vector2.ZERO
 
@@ -20,6 +22,7 @@ func take_damage(amount: int):
 func die(): 
 	var xp_orb_instance: Node2D = xp_orb.instantiate()
 	xp_orb_instance.position = global_position
+	xp_orb_instance.player = player
 	game.call_deferred("add_child", xp_orb_instance)
 	call_deferred("queue_free")
 

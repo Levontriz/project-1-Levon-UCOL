@@ -44,3 +44,10 @@ func _on_damage_timer_timeout() -> void:
 	var areas = hurtbox.get_overlapping_areas()
 	for area in areas:
 		damage(area.damage)
+
+
+func _on_pickup_area_area_entered(area: Area2D) -> void:
+	if area.has_method("pick_up"):
+		area.pick_up()
+	else:
+		push_warning("Something entered PickupArea on layer player_pickup but didn't have a pick_up method. Please double check your collision layering and methods")

@@ -10,3 +10,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
 		queue_free()
+	else:
+		push_warning("Bullet collided with something on layer enemies_hurtbox but it doesnt have take_damage method. Double check methods and collision layering")
